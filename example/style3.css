@@ -1,0 +1,103 @@
+:root{
+    --red:#ff0033;
+}
+
+*{
+    font-family: sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+*::selection{
+    background:var(--red);
+    color: #fff;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+}
+section{
+    padding: 1.5rem 9%;
+}
+.heading{
+    text-align: center;
+    padding: 2.5rem 0;
+}
+.heading span{
+    font-size: 3.5rem;
+    background: rgba(225, 165, 0, .2);
+    color: var(--red);
+    border-radius: .5rem;
+    padding: .2rem 1rem;
+}
+.heading span.space{
+    background: none;
+}
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--red);
+    color: #fff;
+    padding: 1rem 1rem;
+    border: 0rem solid var(--red);
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+.btn:hover{
+    background: rgba(225, 165, 0, 2);
+    color: var(--red);
+}
+.book{
+    background-color: #222;
+}
+.book h1{
+    font-size: 2rem;
+    text-align: center;
+    color: var(--red);
+}
+.book .row{
+    background-image: url(image1.jpg);
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: overlay;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+.book .row form{
+    flex: 1 1 40rem;
+    padding: 2rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+    border-radius: .5rem;
+}
+.book .row form .inputBox{
+    padding: .5rem 0;
+}
+.book .row form .inputBox input{
+    width: 100%;
+    padding: 1rem;
+    border: .1rem solid rgba(0, 0, 0, .1);
+    font-size: 1.7rem;
+    color: #333;
+    text-transform: none;
+}
+.book .row .inputBox h3{
+    font-size: 2rem;
+    padding: 1rem 0;
+    color: #f2e3e3;
+}
+.book .row form .Price{
+    padding: .5rem 0;
+}
+.book .row form .price h3{
+    font-size: 2rem;
+    padding: 1rem 0;
+    color: #f2e3e3;
+}

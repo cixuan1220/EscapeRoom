@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>QIU Escape Room</title>
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        <link rel="stylesheet" href="style3.css">
+    </head>
+    
+<section class="book" id="book">
+    <h1 class="heading">
+        <span>b</span>
+        <span>o</span>
+        <span>o</span>
+        <span>k</span>
+        <span class="space"></span>
+        <span>n</span>
+        <span>o</span>
+        <span>w</span>
+    </h1>
+    <h1>Hospital</h1>
+    <div class="row">
+        <form action="">
+            <div class="inputBox">
+                <h3>number of person</h3>
+                <input type="number" id="guestCount" oninput="updatePrice()">
+            </div>
+            <div class="inputBox">
+                <h3>email</h3>
+                <input type="email" placeholder="Enter Your Email">
+            </div>
+            <div class="inputBox">
+                <h3>date</h3>
+                <input type="date" id="date">
+            </div>
+            <div class="inputBox">
+                <h3>time</h3>
+                <input type="time" id="time">
+            </div>
+            <div class="Price">
+                <h3>total: RM<span id="totalPrice">0</span></h3>
+            </div>
+            <div><a href="card.html" class="btn">make payment</a>
+        </form>
+    </div>
+    <script>
+        function updatePrice() {
+            const guestCount = document.getElementById('guestCount').value;
+            const pricePerPerson = 20; // 每个人的价格
+            const totalPrice = guestCount * pricePerPerson; // 计算总价格
+            document.getElementById('totalPrice').innerText = totalPrice; // 更新页面上的总价格
+        }
+    
+        function bookNow() {
+            // 这里可以添加更多的逻辑，例如提交表单等
+            alert('您已成功预订，价格为 RM ' + document.getElementById('totalPrice').innerText);
+            // 可根据需求跳转到支付页面或其他处理
+            window.location.href = 'booking.html'; // 跳转到booking2页面
+        }
+    </script>
+</section>
+</html>
