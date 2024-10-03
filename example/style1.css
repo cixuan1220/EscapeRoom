@@ -289,8 +289,6 @@ header .icons i:hover{
 .Contact .container-form .item .image{
     height: 350px;
     width: 350px;
-    align-items: center;
-    justify-content: center;
 }
 .third-text{
     font-size: 4rem;
