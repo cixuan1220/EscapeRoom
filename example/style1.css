@@ -286,6 +286,9 @@ header .icons i:hover{
 .Contact .container-form .item  .submit-form{
     background: #24d638;
 }
+.Contact .container-form .item  .submit-form h3{
+    font-size: 2rem;
+}
 .Contact .container-form .item .image{
     height: 350px;
     width: 350px;
