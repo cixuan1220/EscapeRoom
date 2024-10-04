@@ -1,13 +1,13 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>QIU Escape Room</title>
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-        <link rel="stylesheet" href="style3.css">
-    </head>
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QIU Escape Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
 <section class="book" id="book">
     <h1 class="heading">
         <span>b</span>
@@ -19,35 +19,113 @@
         <span>o</span>
         <span>w</span>
     </h1>
-    <h1>prison</h1>
+    <h1>Prison</h1>
     <div class="row">
-        <form action="">
+        <form action="" id="escaperoom">
+            <div class="title">
+                <div id="title">prison</div>
+            </div>
+            <div class="inputBox">
+                <input type="text" id="name" placeholder="your name" required>
+            </div>
+            <div class="inputBox">
+                <input type="email" id="emailid" placeholder="your email" required>
+            </div>
+            <div class="inputBox">
+                <input type="date" id="date" required>
+            </div>
+            <div class="inputBox">
+                <input type="time" id="time" required>
+            </div>
             <div class="inputBox">
                 <h3>number of person</h3>
-                <input type="number" id="guestCount" oninput="updatePrice()">
+                <input type="number" id="guestCount" oninput="updatePrice()" required>
             </div>
             <div class="Price">
                 <h3>total: RM<span id="totalPrice">0</span></h3>
             </div>
+            <button type="submit" class="submit">Submit</button>
             <div><a href="card.html" class="btn">make payment</a>
         </form>
     </div>
-    <script>
-        function updatePrice() {
-            const guestCount = document.getElementById('guestCount').value;
-            const pricePerPerson = 20; // 每个人的价格
-            const totalPrice = guestCount * pricePerPerson; // 计算总价格
-            document.getElementById('totalPrice').innerText = totalPrice; // 更新页面上的总价格
-        }
-    
-        function bookNow() {
-            // 这里可以添加更多的逻辑，例如提交表单等
-            alert('您已成功预订，价格为 RM ' + document.getElementById('totalPrice').innerText);
-            // 可根据需求跳转到支付页面或其他处理
-            window.location.href = 'booking1.html'; // 跳转到booking2页面
-        }
-    </script>
-        </form>
-    </div>
 </section>
+<script>
+    function updatePrice() {
+        const guestCount = document.getElementById('guestCount').value;
+        const pricePerPerson = 20; // 每个人的价格
+        const totalPrice = guestCount * pricePerPerson; // 计算总价格
+        document.getElementById('totalPrice').innerText = totalPrice; // 更新页面上的总价格
+    }
+
+    function bookNow() {
+        // 这里可以添加更多的逻辑，例如提交表单等
+        alert('您已成功预订，价格为 RM ' + document.getElementById('totalPrice').innerText);
+        // 可根据需求跳转到支付页面或其他处理
+        window.location.href = 'booking.html'; // 跳转到booking2页面
+    }</script>
+    
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+    import { getDatabase, set, push, ref } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyD64fC2--bOQogQ_BWXmgPrzi5NisejKWA",
+        authDomain: "escaperoom-1220a.firebaseapp.com",
+        projectId: "escaperoom-1220a",
+        storageBucket: "escaperoom-1220a.appspot.com",
+        messagingSenderId: "303129934252",
+        appId: "1:303129934252:web:b8f737a7bd31408dc72209",
+        databaseURL: "https://escaperoom-1220a-default-rtdb.firebaseio.com/"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    document.getElementById("escaperoom").addEventListener("submit", submitForm);
+
+    function submitForm(e) {
+        e.preventDefault();  // 阻止表单的默认提交行为
+        console.log("submited"); // 检查表单是否已提交
+
+        var title = document.getElementById('title').innerText;
+        var name = getElementVal('name');
+        var emailid = getElementVal('emailid');
+        var date = getElementVal('date');
+        var time = getElementVal('time');
+        var Price = document.getElementById('totalPrice').innerText
+
+        console.log("title: ", title);
+        console.log("Name: ", name);
+        console.log("Email: ", emailid);
+        console.log("Date: ", date);
+        console.log("Time: ", time);
+        console.log("TotalPrice: ", totalPrice);
+
+        saveMessage(title, name, emailid, date, time, totalPrice);
+    }
+
+    const saveMessage = (title, name, emailid, date, time, totalPrice) => {
+        // 使用 push 创建一个新的条目
+        const newMessageRef = push(ref(db, 'escaperoom'));
+
+        set(newMessageRef, {
+            title: title,
+            name: name,
+            emailid: emailid,
+            date: date,
+            time: time,
+            totalPrice: totalPrice
+        }).then(() => {
+            alert('Save successfully');
+        }).catch((error) => {
+            console.error("Data error: ", error);
+        });
+    };
+
+    const getElementVal = (id) => {
+        return document.getElementById(id).value;
+    }
+
+</script>
+</body>
 </html>
